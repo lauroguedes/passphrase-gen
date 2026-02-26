@@ -1,0 +1,56 @@
+import { PassphraseGenerator } from "@/components/generator/PassphraseGenerator";
+import { WhyRandomPassphrases } from "@/components/educational/WhyRandomPassphrases";
+import { BestPractices } from "@/components/educational/BestPractices";
+import { EffResearchSummary } from "@/components/educational/EffResearchSummary";
+import { HeroSection } from "@/components/HeroSection";
+
+export default function Home() {
+  return (
+    <main className="relative min-h-screen overflow-x-hidden">
+      {/* Background decorations — page-wide */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-gradient-to-br from-indigo-200/40 via-indigo-100/20 to-transparent blur-3xl" />
+        <div className="absolute top-20 -left-20 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-mint-200/30 to-transparent blur-3xl" />
+        <div className="absolute top-10 -right-20 w-[350px] h-[350px] rounded-full bg-gradient-to-l from-indigo-300/20 to-transparent blur-3xl" />
+      </div>
+
+      {/* Hero Section */}
+      <HeroSection />
+
+      <div className="px-4 max-w-4xl mx-auto">
+
+      {/* Generator */}
+      <PassphraseGenerator />
+
+      {/* Educational Sections */}
+      <div className="mt-24 space-y-16 md:space-y-24">
+        <WhyRandomPassphrases />
+        <BestPractices />
+        <EffResearchSummary />
+      </div>
+
+      {/* Footer */}
+      <footer className="mt-24 text-center text-sm text-slate-400 font-body pb-8">
+        <p>
+          Built with the{" "}
+          <a
+            href="https://www.eff.org/dice"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-400 hover:text-indigo-500 underline underline-offset-2"
+          >
+            EFF Large Wordlist
+          </a>
+          . No data leaves your browser.
+        </p>
+        <p className="mt-1">
+          All randomness generated locally via{" "}
+          <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">
+            crypto.getRandomValues()
+          </code>
+        </p>
+      </footer>
+      </div>
+    </main>
+  );
+}
