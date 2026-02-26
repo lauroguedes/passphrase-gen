@@ -23,7 +23,7 @@ export function EffResearchSummary() {
         <div className="relative pt-6">
           <SectionHeading>The EFF Dice-Roll Method</SectionHeading>
 
-          <div className="space-y-4 font-body text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl">
+          <div className="space-y-4 font-body text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed max-w-2xl">
             <p>
               The Electronic Frontier Foundation (EFF) developed the dice-roll
               passphrase method to provide a simple, verifiable way for anyone to
@@ -38,7 +38,7 @@ export function EffResearchSummary() {
             </p>
             <p>
               This generator reproduces that process digitally using{" "}
-              <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded text-indigo-600">
+              <code className="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-indigo-600 dark:text-indigo-400">
                 crypto.getRandomValues()
               </code>
               , the browser&apos;s cryptographic random number generator — the
@@ -50,7 +50,7 @@ export function EffResearchSummary() {
             href="https://www.eff.org/dice"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-body font-medium text-sm rounded-xl transition-colors border border-indigo-100"
+            className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 bg-indigo-50 dark:bg-indigo-950/50 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 font-body font-medium text-sm rounded-xl transition-colors border border-indigo-100 dark:border-indigo-800"
           >
             Read the EFF&apos;s Research
             <ExternalLink size={14} />

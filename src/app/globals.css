@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Fonts (CSS variables injected by next/font/google in layout.tsx) */
   --font-display: var(--font-space-grotesk), system-ui, sans-serif;
@@ -26,11 +28,17 @@
   --color-mint-600: #0d9488;
   --color-mint-700: #0f766e;
 
-  /* Shadows */
+  /* Shadows — light */
   --shadow-glass: 0 8px 32px rgba(99, 102, 241, 0.08);
   --shadow-glass-lg: 0 16px 48px rgba(99, 102, 241, 0.12);
   --shadow-brutal: 4px 4px 0px 0px #1e293b;
   --shadow-brutal-sm: 2px 2px 0px 0px #1e293b;
+
+  /* Shadows — dark */
+  --shadow-glass-dark: 0 8px 32px rgba(99, 102, 241, 0.15);
+  --shadow-glass-lg-dark: 0 16px 48px rgba(99, 102, 241, 0.20);
+  --shadow-brutal-dark: 4px 4px 0px 0px #e2e8f0;
+  --shadow-brutal-sm-dark: 2px 2px 0px 0px #e2e8f0;
 
   /* Animations */
   --animate-pop-in: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -79,7 +87,8 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-800 antialiased;
+    @apply bg-slate-50 text-slate-800 antialiased transition-colors duration-200;
+    @apply dark:bg-slate-950 dark:text-slate-100;
     background-image: radial-gradient(
         ellipse at 20% 50%,
         rgba(99, 102, 241, 0.06) 0%,
@@ -93,12 +102,30 @@
     min-height: 100vh;
     font-family: var(--font-body);
   }
+
+  :where(.dark) body {
+    background-image: radial-gradient(
+        ellipse at 20% 50%,
+        rgba(99, 102, 241, 0.12) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        rgba(20, 184, 166, 0.10) 0%,
+        transparent 50%
+      );
+  }
 }
 
 @layer components {
   .glass-card {
     @apply bg-white/60 backdrop-blur-[16px] border border-white/30 rounded-2xl;
+    @apply dark:bg-slate-800/60 dark:border-slate-700/30;
     box-shadow: var(--shadow-glass);
+  }
+
+  :where(.dark) .glass-card {
+    box-shadow: var(--shadow-glass-dark);
   }
 
   .glass-card-hover {
@@ -109,9 +136,18 @@
     box-shadow: var(--shadow-glass-lg);
   }
 
+  :where(.dark) .glass-card-hover:hover {
+    box-shadow: var(--shadow-glass-lg-dark);
+  }
+
   .brutal-btn {
     @apply border-2 border-slate-800 font-display font-bold rounded-xl transition-all;
+    @apply dark:border-slate-200;
     box-shadow: var(--shadow-brutal);
+  }
+
+  :where(.dark) .brutal-btn {
+    box-shadow: var(--shadow-brutal-dark);
   }
 
   .brutal-btn:active {
@@ -121,7 +157,12 @@
 
   .brutal-btn-sm {
     @apply border-2 border-slate-800 rounded-lg transition-all;
+    @apply dark:border-slate-200;
     box-shadow: var(--shadow-brutal-sm);
+  }
+
+  :where(.dark) .brutal-btn-sm {
+    box-shadow: var(--shadow-brutal-sm-dark);
   }
 
   .brutal-btn-sm:active {

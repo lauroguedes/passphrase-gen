@@ -29,7 +29,7 @@ export function SeparatorSelector({
               className={`w-10 h-10 text-sm font-mono font-bold rounded-lg border-2 transition-colors duration-150 ${
                 selected === sep.value
                   ? "bg-indigo-500 text-white border-indigo-600"
-                  : "bg-white text-slate-700 border-slate-300 hover:border-slate-400"
+                  : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500"
               }`}
               style={
                 selected === sep.value

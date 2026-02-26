@@ -65,21 +65,21 @@ export function PassphraseGenerator() {
               onChange={setWordlistType}
             />
 
-            <div className="h-px bg-slate-200/60" />
+            <div className="h-px bg-slate-200/60 dark:bg-slate-700/60" />
 
             <WordCountStepper
               count={config.wordCount}
               onChange={setWordCount}
             />
 
-            <div className="h-px bg-slate-200/60" />
+            <div className="h-px bg-slate-200/60 dark:bg-slate-700/60" />
 
             <SeparatorSelector
               selected={config.separator}
               onChange={setSeparator}
             />
 
-            <div className="h-px bg-slate-200/60" />
+            <div className="h-px bg-slate-200/60 dark:bg-slate-700/60" />
 
             <OptionSwitches
               capitalize={config.capitalize}
@@ -98,7 +98,7 @@ export function PassphraseGenerator() {
             </div>
           ) : error ? (
             <div className="min-h-[120px] flex flex-col items-center justify-center gap-3">
-              <p className="text-red-500 font-body text-sm">{error}</p>
+              <p className="text-red-500 dark:text-red-400 font-body text-sm">{error}</p>
               <button
                 onClick={handleGenerate}
                 className="text-indigo-500 font-body text-sm underline hover:text-indigo-600"

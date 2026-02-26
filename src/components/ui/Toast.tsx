@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Check } from "lucide-react";
+import { useTheme } from "next-themes";
 
 interface ToastProps {
   show: boolean;
@@ -9,6 +10,9 @@ interface ToastProps {
 }
 
 export function Toast({ show, text }: ToastProps) {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
   return (
     <AnimatePresence>
       {show && text && (
@@ -27,22 +31,27 @@ export function Toast({ show, text }: ToastProps) {
           <div
             className="rounded-2xl px-4 py-3 flex items-start gap-3"
             style={{
-              background: "rgba(255, 255, 255, 0.85)",
+              background: isDark
+                ? "rgba(30, 41, 59, 0.85)"
+                : "rgba(255, 255, 255, 0.85)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
-              border: "1px solid rgba(20, 184, 166, 0.25)",
-              boxShadow:
-                "0 16px 48px rgba(99, 102, 241, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08)",
+              border: isDark
+                ? "1px solid rgba(20, 184, 166, 0.3)"
+                : "1px solid rgba(20, 184, 166, 0.25)",
+              boxShadow: isDark
+                ? "0 16px 48px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2)"
+                : "0 16px 48px rgba(99, 102, 241, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08)",
             }}
           >
             <div className="flex-shrink-0 w-6 h-6 rounded-full bg-mint-500 flex items-center justify-center mt-0.5">
               <Check size={14} strokeWidth={3} className="text-white" />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-display font-bold text-slate-800">
+              <p className="text-sm font-display font-bold text-slate-800 dark:text-slate-100">
                 Copied
               </p>
-              <p className="text-xs font-mono text-slate-500 mt-0.5 break-all line-clamp-2">
+              <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5 break-all line-clamp-2">
                 {text}
               </p>
             </div>

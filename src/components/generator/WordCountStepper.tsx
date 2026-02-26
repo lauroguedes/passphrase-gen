@@ -23,8 +23,8 @@ export function WordCountStepper({ count, onChange }: WordCountStepperProps) {
           disabled={count <= WORD_COUNT_MIN}
           className={`w-11 h-11 flex items-center justify-center rounded-xl border-2 font-bold transition-colors duration-150 ${
             count > WORD_COUNT_MIN
-              ? "bg-white text-slate-700 border-slate-300 hover:border-slate-400"
-              : "bg-white/50 text-slate-300 border-slate-200 cursor-not-allowed"
+              ? "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500"
+              : "bg-white/50 dark:bg-slate-800/50 text-slate-300 dark:text-slate-600 border-slate-200 dark:border-slate-700 cursor-not-allowed"
           }`}
           aria-label="Decrease word count"
         >
@@ -39,7 +39,7 @@ export function WordCountStepper({ count, onChange }: WordCountStepperProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
               transition={{ duration: 0.15 }}
-              className="font-display font-bold text-2xl text-slate-800"
+              className="font-display font-bold text-2xl text-slate-800 dark:text-slate-100"
             >
               {count}
             </motion.span>
@@ -53,8 +53,8 @@ export function WordCountStepper({ count, onChange }: WordCountStepperProps) {
           disabled={count >= WORD_COUNT_MAX}
           className={`w-11 h-11 flex items-center justify-center rounded-xl border-2 font-bold transition-colors duration-150 ${
             count < WORD_COUNT_MAX
-              ? "bg-white text-slate-700 border-slate-300 hover:border-slate-400"
-              : "bg-white/50 text-slate-300 border-slate-200 cursor-not-allowed"
+              ? "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500"
+              : "bg-white/50 dark:bg-slate-800/50 text-slate-300 dark:text-slate-600 border-slate-200 dark:border-slate-700 cursor-not-allowed"
           }`}
           aria-label="Increase word count"
         >

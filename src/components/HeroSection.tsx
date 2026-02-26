@@ -2,15 +2,21 @@
 
 import { motion } from "framer-motion";
 import { Dices } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function HeroSection() {
   return (
     <div className="relative">
+      {/* Theme Toggle — top right */}
+      <div className="absolute top-4 right-4 z-10">
+        <ThemeToggle />
+      </div>
+
       <header className="flex flex-col items-center pt-16 md:pt-24 pb-16 px-4">
         {/* Badge — centered above title */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 mb-8">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-800 mb-8">
           <Dices size={14} className="text-indigo-500" />
-          <span className="text-xs font-body font-semibold text-indigo-600 uppercase tracking-wider">
+          <span className="text-xs font-body font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">
             EFF Dice-Roll Method
           </span>
         </div>
@@ -38,7 +44,7 @@ export function HeroSection() {
           </motion.div>
 
           <h1 className="relative text-5xl md:text-7xl tracking-tight">
-            <span className="font-display font-bold text-slate-900">Passphrase</span>
+            <span className="font-display font-bold text-slate-900 dark:text-white">Passphrase</span>
             {" "}
             <span className="font-body font-bold bg-gradient-to-r from-indigo-600 via-indigo-500 to-mint-500 bg-clip-text text-transparent italic">
               Generator

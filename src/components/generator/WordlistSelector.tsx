@@ -26,7 +26,7 @@ export function WordlistSelector({ selected, onChange }: WordlistSelectorProps) 
               className={`h-11 px-5 text-sm font-display font-bold rounded-xl border-2 transition-colors duration-150 ${
                 selected === wl.value
                   ? "bg-indigo-500 text-white border-indigo-600"
-                  : "bg-white text-slate-700 border-slate-300 hover:border-slate-400"
+                  : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500"
               }`}
               style={
                 selected === wl.value

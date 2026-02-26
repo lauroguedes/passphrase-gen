@@ -55,7 +55,7 @@ export function PassphraseDisplay({
                   {separator}
                 </span>
               )}
-              <span className="font-mono text-2xl md:text-3xl font-medium text-slate-800">
+              <span className="font-mono text-2xl md:text-3xl font-medium text-slate-800 dark:text-slate-100">
                 {item.display}
               </span>
               <sub className="text-[10px] md:text-xs text-slate-400 font-mono ml-0.5 select-none">

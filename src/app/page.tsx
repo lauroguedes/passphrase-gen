@@ -9,9 +9,9 @@ export default function Home() {
     <main className="relative min-h-screen overflow-x-hidden">
       {/* Background decorations — page-wide */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-gradient-to-br from-indigo-200/40 via-indigo-100/20 to-transparent blur-3xl" />
-        <div className="absolute top-20 -left-20 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-mint-200/30 to-transparent blur-3xl" />
-        <div className="absolute top-10 -right-20 w-[350px] h-[350px] rounded-full bg-gradient-to-l from-indigo-300/20 to-transparent blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-gradient-to-br from-indigo-200/40 via-indigo-100/20 to-transparent dark:from-indigo-500/[0.15] dark:via-indigo-400/[0.08] dark:to-transparent blur-3xl" />
+        <div className="absolute top-20 -left-20 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-mint-200/30 to-transparent dark:from-mint-500/[0.12] dark:to-transparent blur-3xl" />
+        <div className="absolute top-10 -right-20 w-[350px] h-[350px] rounded-full bg-gradient-to-l from-indigo-300/20 to-transparent dark:from-indigo-400/[0.10] dark:to-transparent blur-3xl" />
       </div>
 
       {/* Hero Section */}
@@ -45,7 +45,7 @@ export default function Home() {
         </p>
         <p className="mt-1">
           All randomness generated locally via{" "}
-          <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">
+          <code className="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
             crypto.getRandomValues()
           </code>
         </p>

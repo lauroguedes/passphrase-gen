@@ -30,8 +30,8 @@ function Toggle({
       className="flex w-full items-center justify-between gap-3 py-1.5 cursor-pointer select-none group"
     >
       <div className="flex items-center gap-2">
-        <Icon size={16} strokeWidth={2} className="text-slate-500 group-hover:text-slate-700 transition-colors" />
-        <span className="text-sm font-body font-medium text-slate-700">
+        <Icon size={16} strokeWidth={2} className="text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors" />
+        <span className="text-sm font-body font-medium text-slate-700 dark:text-slate-200">
           {label}
         </span>
       </div>
@@ -39,7 +39,7 @@ function Toggle({
       {/* Switch track */}
       <div
         className={`relative w-11 h-6 rounded-full transition-colors duration-200 flex-shrink-0 ${
-          checked ? "bg-indigo-500" : "bg-slate-200"
+          checked ? "bg-indigo-500" : "bg-slate-200 dark:bg-slate-700"
         }`}
       >
         {/* Switch knob */}

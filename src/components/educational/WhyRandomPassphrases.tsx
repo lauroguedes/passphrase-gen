@@ -29,7 +29,7 @@ export function WhyRandomPassphrases() {
           {/* Text content */}
           <div className="flex-1">
             <SectionHeading>Why Use a Random Passphrase?</SectionHeading>
-            <div className="space-y-4 font-body text-slate-600 text-sm md:text-base leading-relaxed">
+            <div className="space-y-4 font-body text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed">
               <p>
                 Human-created passwords follow predictable patterns that
                 attackers exploit. We substitute letters with numbers, append
@@ -38,30 +38,30 @@ export function WhyRandomPassphrases() {
               </p>
               <p>
                 A randomly generated passphrase from a 7,776-word list provides{" "}
-                <strong className="text-slate-800">~12.9 bits of entropy per word</strong>.
+                <strong className="text-slate-800 dark:text-white">~12.9 bits of entropy per word</strong>.
                 That means each word you add multiplies the difficulty by nearly
                 8,000x.
               </p>
               <p>
                 Six random words give you approximately{" "}
-                <strong className="text-slate-800">77.5 bits of entropy</strong> — enough
+                <strong className="text-slate-800 dark:text-white">77.5 bits of entropy</strong> — enough
                 to resist brute-force attacks for decades, even against
                 nation-state adversaries.
               </p>
             </div>
 
             {/* Entropy table */}
-            <div className="mt-6 overflow-hidden rounded-xl border border-slate-200/60">
+            <div className="mt-6 overflow-hidden rounded-xl border border-slate-200/60 dark:border-slate-700/60">
               <table className="w-full text-sm font-body">
                 <thead>
-                  <tr className="bg-indigo-50/50">
-                    <th className="text-left px-4 py-2.5 font-medium text-slate-600">
+                  <tr className="bg-indigo-50/50 dark:bg-indigo-950/50">
+                    <th className="text-left px-4 py-2.5 font-medium text-slate-600 dark:text-slate-300">
                       Words
                     </th>
-                    <th className="text-left px-4 py-2.5 font-medium text-slate-600">
+                    <th className="text-left px-4 py-2.5 font-medium text-slate-600 dark:text-slate-300">
                       Entropy (bits)
                     </th>
-                    <th className="text-left px-4 py-2.5 font-medium text-slate-600">
+                    <th className="text-left px-4 py-2.5 font-medium text-slate-600 dark:text-slate-300">
                       Strength
                     </th>
                   </tr>
@@ -70,12 +70,12 @@ export function WhyRandomPassphrases() {
                   {entropyData.map((row) => (
                     <tr
                       key={row.words}
-                      className="border-t border-slate-100"
+                      className="border-t border-slate-100 dark:border-slate-800"
                     >
-                      <td className="px-4 py-2 font-mono text-slate-700">
+                      <td className="px-4 py-2 font-mono text-slate-700 dark:text-slate-300">
                         {row.words}
                       </td>
-                      <td className="px-4 py-2 font-mono text-indigo-600">
+                      <td className="px-4 py-2 font-mono text-indigo-600 dark:text-indigo-400">
                         {row.bits.toFixed(1)}
                       </td>
                       <td className="px-4 py-2">

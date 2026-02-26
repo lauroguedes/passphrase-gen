@@ -55,16 +55,16 @@ export function BestPractices() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex gap-4 p-4 rounded-xl bg-white/40 border border-white/40"
+              className="flex gap-4 p-4 rounded-xl bg-white/40 dark:bg-slate-800/40 border border-white/40 dark:border-slate-700/40"
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center">
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-950 flex items-center justify-center">
                 <tip.icon size={20} className="text-indigo-500" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-sm text-slate-800 mb-1">
+                <h3 className="font-display font-bold text-sm text-slate-800 dark:text-white mb-1">
                   {tip.title}
                 </h3>
-                <p className="font-body text-sm text-slate-500 leading-relaxed">
+                <p className="font-body text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                   {tip.description}
                 </p>
               </div>
