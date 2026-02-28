@@ -15,6 +15,8 @@ export function PassphraseSection() {
     setWordCount,
     setCapitalize,
     setIncludeNumbers,
+    setIncludeSymbols,
+    setIncludeEmojis,
     setSeparator,
     setWordlistType,
   } = usePassphrase();
@@ -31,6 +33,8 @@ export function PassphraseSection() {
         setWordCount={setWordCount}
         setCapitalize={setCapitalize}
         setIncludeNumbers={setIncludeNumbers}
+        setIncludeSymbols={setIncludeSymbols}
+        setIncludeEmojis={setIncludeEmojis}
         setSeparator={setSeparator}
         setWordlistType={setWordlistType}
       />
@@ -39,6 +43,9 @@ export function PassphraseSection() {
         <EntropyStats
           wordCount={config.wordCount}
           wordlistType={config.wordlistType}
+          includeNumbers={config.includeNumbers}
+          includeSymbols={config.includeSymbols}
+          includeEmojis={config.includeEmojis}
         />
       </div>
     </>

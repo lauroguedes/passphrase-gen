@@ -6,24 +6,30 @@ export const WORDLISTS: WordlistChoice[] = [
     label: "Long List",
     icon: "L",
     tooltip: "7,776 words, 5 dice per word. Maximum security.",
-    url: "/eff_large_wordlist.txt",
+    url: "/wordlists/en/eff_large_wordlist.txt",
     diceCount: 5,
+    language: "en",
+    wordCount: 7776,
   },
   {
     value: "short1",
     label: "Short #1",
     icon: "S#1",
     tooltip: "1,296 short words, 4 dice. Easier to type.",
-    url: "/eff_short_wordlist_1.txt",
+    url: "/wordlists/en/eff_short_wordlist_1.txt",
     diceCount: 4,
+    language: "en",
+    wordCount: 1296,
   },
   {
     value: "short2",
     label: "Short #2",
     icon: "S#2",
     tooltip: "1,296 memorable words, 4 dice. Easy to remember.",
-    url: "/eff_short_wordlist_2.txt",
+    url: "/wordlists/en/eff_short_wordlist_2.txt",
     diceCount: 4,
+    language: "en",
+    wordCount: 1296,
   },
 ];
 
@@ -32,6 +38,20 @@ export const WORDLIST_DEFAULT: WordlistType = "long";
 export const WORD_COUNT_MIN = 3;
 export const WORD_COUNT_MAX = 10;
 export const WORD_COUNT_DEFAULT = 6;
+
+// Symbol set: excludes characters that overlap with separators (~ | : ! _ - . /)
+export const SYMBOLS = ["@", "#", "$", "%", "^", "&", "*", "+", "=", "?"] as const;
+
+// Curated emoji set: universally supported, visually distinct
+export const EMOJIS = [
+  "🔥", "⚡", "🌟", "💎", "🎯", "🚀", "🎲", "🔑", "🛡️", "🎪",
+  "🌈", "🍀", "🦊", "🐉", "🌸", "🎵", "🌊", "🏔️", "🎭", "🧩",
+  "🦋", "🌙", "☀️", "🍎", "🎈", "🔔", "🧲", "🪐", "🦚", "🌻",
+  "🍄", "🦜", "🐋", "🌵", "🧊", "🔮", "🎸", "🏆", "🦁", "🐺",
+  "🌴", "🍊", "🎃", "❄️", "🌺", "🐬", "🦅", "🌾", "🎨", "🧭",
+  "🪴", "🦑", "🐝", "🌽", "🍉", "🎻", "🦩", "🐙", "🌿", "🍋",
+  "🦎", "🐧", "🌲", "🎪", "🐡",
+] as const;
 
 export const SEPARATORS: SeparatorChoice[] = [
   { value: "~", label: "Tilde", icon: "~", tooltip: "Tilde (~)" },

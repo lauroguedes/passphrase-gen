@@ -1,13 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ALargeSmall, Hash } from "lucide-react";
+import { ALargeSmall, Hash, Sparkles, Smile } from "lucide-react";
 
 interface OptionSwitchesProps {
   capitalize: boolean;
   includeNumbers: boolean;
+  includeSymbols: boolean;
+  includeEmojis: boolean;
   onCapitalizeChange: (value: boolean) => void;
   onIncludeNumbersChange: (value: boolean) => void;
+  onIncludeSymbolsChange: (value: boolean) => void;
+  onIncludeEmojisChange: (value: boolean) => void;
 }
 
 function Toggle({
@@ -59,8 +63,12 @@ function Toggle({
 export function OptionSwitches({
   capitalize,
   includeNumbers,
+  includeSymbols,
+  includeEmojis,
   onCapitalizeChange,
   onIncludeNumbersChange,
+  onIncludeSymbolsChange,
+  onIncludeEmojisChange,
 }: OptionSwitchesProps) {
   return (
     <div className="flex flex-col gap-1">
@@ -79,6 +87,18 @@ export function OptionSwitches({
           onChange={onIncludeNumbersChange}
           label="Include Numbers"
           icon={Hash}
+        />
+        <Toggle
+          checked={includeSymbols}
+          onChange={onIncludeSymbolsChange}
+          label="Include Symbols"
+          icon={Sparkles}
+        />
+        <Toggle
+          checked={includeEmojis}
+          onChange={onIncludeEmojisChange}
+          label="Include Emojis"
+          icon={Smile}
         />
       </div>
     </div>

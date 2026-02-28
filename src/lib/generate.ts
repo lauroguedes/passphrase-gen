@@ -1,5 +1,5 @@
 import { getWordlist } from "./wordlist";
-import { WORDLISTS } from "./constants";
+import { WORDLISTS, SYMBOLS, EMOJIS } from "./constants";
 import type { GeneratedWord, PassphraseConfig, PassphraseResult } from "@/types";
 
 /**
@@ -31,6 +31,30 @@ function randomDigit(): number {
   }
 }
 
+function randomSymbol(): string {
+  const arr = new Uint8Array(1);
+  const setSize = SYMBOLS.length;
+  const maxUnbiased = Math.floor(256 / setSize) * setSize;
+  for (;;) {
+    crypto.getRandomValues(arr);
+    if (arr[0] < maxUnbiased) {
+      return SYMBOLS[arr[0] % setSize];
+    }
+  }
+}
+
+function randomEmoji(): string {
+  const arr = new Uint8Array(1);
+  const setSize = EMOJIS.length;
+  const maxUnbiased = Math.floor(256 / setSize) * setSize;
+  for (;;) {
+    crypto.getRandomValues(arr);
+    if (arr[0] < maxUnbiased) {
+      return EMOJIS[arr[0] % setSize];
+    }
+  }
+}
+
 export async function generatePassphrase(
   config: PassphraseConfig
 ): Promise<PassphraseResult> {
@@ -56,6 +80,12 @@ export async function generatePassphrase(
       : word;
     if (config.includeNumbers) {
       display += randomDigit();
+    }
+    if (config.includeSymbols) {
+      display += randomSymbol();
+    }
+    if (config.includeEmojis) {
+      display += randomEmoji();
     }
 
     words.push({ word, display, diceIndex });

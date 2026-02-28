@@ -29,6 +29,8 @@ export interface PassphraseGeneratorProps {
   setWordCount: (count: number) => void;
   setCapitalize: (value: boolean) => void;
   setIncludeNumbers: (value: boolean) => void;
+  setIncludeSymbols: (value: boolean) => void;
+  setIncludeEmojis: (value: boolean) => void;
   setSeparator: (value: SeparatorOption) => void;
   setWordlistType: (value: WordlistType) => void;
 }
@@ -43,6 +45,8 @@ export function PassphraseGenerator({
   setWordCount,
   setCapitalize,
   setIncludeNumbers,
+  setIncludeSymbols,
+  setIncludeEmojis,
   setSeparator,
   setWordlistType,
 }: PassphraseGeneratorProps) {
@@ -101,8 +105,12 @@ export function PassphraseGenerator({
             <OptionSwitches
               capitalize={config.capitalize}
               includeNumbers={config.includeNumbers}
+              includeSymbols={config.includeSymbols}
+              includeEmojis={config.includeEmojis}
               onCapitalizeChange={setCapitalize}
               onIncludeNumbersChange={setIncludeNumbers}
+              onIncludeSymbolsChange={setIncludeSymbols}
+              onIncludeEmojisChange={setIncludeEmojis}
             />
           </div>
         </GlassCard>

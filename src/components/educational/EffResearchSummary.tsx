@@ -31,7 +31,7 @@ export function EffResearchSummary() {
             </p>
             <p>
               Their curated wordlist of 7,776 common English words was
-              specifically chosen for memorability — each word is distinct,
+              specifically chosen for memorability. Each word is distinct,
               easy to spell, and unlikely to be confused with others. By rolling
               five physical dice, you select a word with true hardware
               randomness.
@@ -41,7 +41,7 @@ export function EffResearchSummary() {
               <code className="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-indigo-600 dark:text-indigo-400">
                 crypto.getRandomValues()
               </code>
-              , the browser&apos;s cryptographic random number generator — the
+              , the browser&apos;s cryptographic random number generator, the
               digital equivalent of perfectly fair dice.
             </p>
           </div>

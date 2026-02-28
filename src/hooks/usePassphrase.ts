@@ -15,6 +15,8 @@ export function usePassphrase() {
     wordCount: WORD_COUNT_DEFAULT,
     capitalize: false,
     includeNumbers: false,
+    includeSymbols: false,
+    includeEmojis: false,
     separator: "~",
     wordlistType: WORDLIST_DEFAULT,
   });
@@ -49,6 +51,10 @@ export function usePassphrase() {
     setConfig((prev) => ({ ...prev, capitalize: value }));
   const setIncludeNumbers = (value: boolean) =>
     setConfig((prev) => ({ ...prev, includeNumbers: value }));
+  const setIncludeSymbols = (value: boolean) =>
+    setConfig((prev) => ({ ...prev, includeSymbols: value }));
+  const setIncludeEmojis = (value: boolean) =>
+    setConfig((prev) => ({ ...prev, includeEmojis: value }));
   const setSeparator = (value: SeparatorOption) =>
     setConfig((prev) => ({ ...prev, separator: value }));
   const setWordlistType = (value: WordlistType) =>
@@ -64,6 +70,8 @@ export function usePassphrase() {
     setWordCount,
     setCapitalize,
     setIncludeNumbers,
+    setIncludeSymbols,
+    setIncludeEmojis,
     setSeparator,
     setWordlistType,
   };

@@ -33,7 +33,7 @@ export function WhyRandomPassphrases() {
               <p>
                 Human-created passwords follow predictable patterns that
                 attackers exploit. We substitute letters with numbers, append
-                dates, and reuse familiar words — all patterns that modern
+                dates, and reuse familiar words. All patterns that modern
                 cracking tools anticipate.
               </p>
               <p>
@@ -44,7 +44,7 @@ export function WhyRandomPassphrases() {
               </p>
               <p>
                 Six random words give you approximately{" "}
-                <strong className="text-slate-800 dark:text-white">77.5 bits of entropy</strong> — enough
+                <strong className="text-slate-800 dark:text-white">77.5 bits of entropy</strong>, enough
                 to resist brute-force attacks for decades, even against
                 nation-state adversaries.
               </p>

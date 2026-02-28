@@ -1,4 +1,4 @@
-import type { WordlistType } from "@/types";
+import { WORDLISTS, SYMBOLS, EMOJIS } from "./constants";
 
 export interface EntropyResult {
   wordlistSize: number;
@@ -11,11 +11,20 @@ export interface EntropyResult {
   strength: { label: string; color: string; percent: number };
 }
 
-const WORDLIST_SIZES: Record<WordlistType, number> = {
-  long: 7776,
-  short1: 1296,
-  short2: 1296,
-};
+export interface EntropyOptions {
+  includeNumbers?: boolean;
+  includeSymbols?: boolean;
+  includeEmojis?: boolean;
+}
+
+/**
+ * Look up the word count for a given wordlist type from the WORDLISTS registry.
+ */
+function getWordlistSize(wordlistType: string): number {
+  const wl = WORDLISTS.find((w) => w.value === wordlistType);
+  if (!wl) throw new Error(`Unknown wordlist: ${wordlistType}`);
+  return wl.wordCount ?? (wl.diceCount === 5 ? 7776 : 1296);
+}
 
 /**
  * Format a BigInt into scientific notation: "X.XX × 10^Y"
@@ -78,13 +87,12 @@ function formatCrackTime(seconds: number): { value: string; unit: string } {
     return { value: (years / 1_000_000_000_000).toFixed(1), unit: "trillion years" };
   }
 
-  // For extremely large numbers, use scientific notation
   return { value: years.toExponential(2), unit: "years" };
 }
 
 /**
  * Classify entropy strength into tiers.
- * Percent is clamped to 0–100, scaled against 130 bits as "max" reference.
+ * Percent is clamped to 0-100, scaled against 130 bits as "max" reference.
  */
 function getStrength(totalBits: number): {
   label: string;
@@ -109,26 +117,48 @@ function getStrength(totalBits: number): {
 }
 
 /**
- * Compute all entropy-related statistics for a given word count and wordlist type.
+ * Compute all entropy-related statistics for a given configuration.
  *
- * @param wordCount Number of words in the passphrase (3–10)
- * @param wordlistType Which EFF wordlist is used
- * @returns Full entropy breakdown
+ * Each enabled option adds independent randomness per word:
+ * - includeNumbers: +log2(10)             = ~3.32 bits/word
+ * - includeSymbols: +log2(SYMBOLS.length) = ~3.32 bits/word
+ * - includeEmojis:  +log2(EMOJIS.length)  = ~6.02 bits/word
+ *
+ * Capitalize is NOT counted (deterministic transform, not random selection).
  */
 export function computeEntropy(
   wordCount: number,
-  wordlistType: WordlistType,
+  wordlistType: string,
+  options: EntropyOptions = {},
 ): EntropyResult {
-  const wordlistSize = WORDLIST_SIZES[wordlistType];
-  const bitsPerWord = Math.log2(wordlistSize);
+  const wordlistSize = getWordlistSize(wordlistType);
+  const baseBitsPerWord = Math.log2(wordlistSize);
+
+  let bonusBitsPerWord = 0;
+  if (options.includeNumbers) {
+    bonusBitsPerWord += Math.log2(10);
+  }
+  if (options.includeSymbols) {
+    bonusBitsPerWord += Math.log2(SYMBOLS.length);
+  }
+  if (options.includeEmojis) {
+    bonusBitsPerWord += Math.log2(EMOJIS.length);
+  }
+
+  const bitsPerWord = baseBitsPerWord + bonusBitsPerWord;
   const totalBits = bitsPerWord * wordCount;
 
-  // BigInt keyspace: wordlistSize ^ wordCount
-  const keyspace = BigInt(wordlistSize) ** BigInt(wordCount);
+  // Keyspace: (wordlistSize * bonusMultiplier) ^ wordCount
+  const bonusMultiplier =
+    (options.includeNumbers ? 10 : 1) *
+    (options.includeSymbols ? SYMBOLS.length : 1) *
+    (options.includeEmojis ? EMOJIS.length : 1);
+  const effectivePerWord = BigInt(wordlistSize) * BigInt(bonusMultiplier);
+  const keyspace = effectivePerWord ** BigInt(wordCount);
   const keyspaceDisplay = formatBigIntScientific(keyspace);
 
   // Crack time: average guesses = keyspace / 2, at 1 trillion guesses/sec
-  const GUESSES_PER_SECOND = 1_000_000_000_000; // 1 trillion
+  const GUESSES_PER_SECOND = 1_000_000_000_000;
   const halfKeyspace = keyspace / BigInt(2);
   const crackSeconds = Number(halfKeyspace) / GUESSES_PER_SECOND;
   const crackDisplay = formatCrackTime(crackSeconds);

@@ -1,14 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Dices } from "lucide-react";
+import { Dices, Github } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function HeroSection() {
   return (
     <div className="relative">
-      {/* Theme Toggle — top right */}
-      <div className="absolute top-4 right-4 z-10">
+      {/* Top-right controls: GitHub + Theme Toggle */}
+      <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+        <motion.a
+          href="https://github.com/lauroguedes/passphrase-gen"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
+          className="w-10 h-10 flex items-center justify-center rounded-xl border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors duration-200 hover:border-slate-400 dark:hover:border-slate-500"
+          aria-label="View source on GitHub"
+          title="GitHub Repository"
+        >
+          <Github size={18} strokeWidth={2} />
+        </motion.a>
         <ThemeToggle />
       </div>
 

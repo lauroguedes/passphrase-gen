@@ -11,12 +11,26 @@ import type { WordlistType } from "@/types";
 interface EntropyStatsProps {
   wordCount: number;
   wordlistType: WordlistType;
+  includeNumbers?: boolean;
+  includeSymbols?: boolean;
+  includeEmojis?: boolean;
 }
 
-export function EntropyStats({ wordCount, wordlistType }: EntropyStatsProps) {
+export function EntropyStats({
+  wordCount,
+  wordlistType,
+  includeNumbers,
+  includeSymbols,
+  includeEmojis,
+}: EntropyStatsProps) {
   const entropy = useMemo(
-    () => computeEntropy(wordCount, wordlistType),
-    [wordCount, wordlistType],
+    () =>
+      computeEntropy(wordCount, wordlistType, {
+        includeNumbers,
+        includeSymbols,
+        includeEmojis,
+      }),
+    [wordCount, wordlistType, includeNumbers, includeSymbols, includeEmojis],
   );
 
   return (
@@ -150,30 +164,21 @@ export function EntropyStats({ wordCount, wordlistType }: EntropyStatsProps) {
           <Info size={14} className="text-slate-400 flex-shrink-0 mt-0.5" />
           <p className="font-body text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
             Crack time assumes an attacker capable of 1 trillion (10
-            <sup>12</sup>) guesses per second — comparable to a large-scale,
+            <sup>12</sup>) guesses per second, comparable to a large-scale,
             state-sponsored operation. Average crack time is based on searching
             half the keyspace.
           </p>
         </div>
 
-        {/* Zone 4 — Credits */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 pt-4 border-t border-slate-200/40 dark:border-slate-700/40">
+        {/* Zone 4 — Diceware FAQ */}
+        <div className="pt-4 border-t border-slate-200/40 dark:border-slate-700/40">
           <a
-            href="https://diceware.rempe.us/#eff"
+            href="https://theworld.com/%7Ereinhold/dicewarefaq.html"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 font-body text-xs text-slate-400 dark:text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
           >
-            Inspired by Glenn Rempe&apos;s Diceware
-            <ExternalLink size={11} />
-          </a>
-          <a
-            href="https://theworld.com/~reinhold/diceware.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-body text-xs text-slate-400 dark:text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
-          >
-            Diceware&trade; by Arnold G. Reinhold
+            Diceware FAQ by Arnold G. Reinhold
             <ExternalLink size={11} />
           </a>
         </div>

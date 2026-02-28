@@ -30,7 +30,18 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-24 text-center text-sm text-slate-400 font-body pb-8">
+      <footer className="mt-24 text-center text-sm text-slate-400 font-body pb-8 space-y-3">
+        <p>
+          Created by{" "}
+          <a
+            href="https://lauroguedes.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-400 hover:text-indigo-500 underline underline-offset-2"
+          >
+            artisan Lauro Guedes
+          </a>
+        </p>
         <p>
           Built with the{" "}
           <a
@@ -43,12 +54,31 @@ export default function Home() {
           </a>
           . No data leaves your browser.
         </p>
-        <p className="mt-1">
+        <p>
           All randomness generated locally via{" "}
           <code className="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
             crypto.getRandomValues()
           </code>
         </p>
+        <div className="flex flex-wrap justify-center gap-4 mt-2 text-xs text-slate-400 dark:text-slate-500">
+          <a
+            href="https://diceware.rempe.us/#eff"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
+          >
+            Inspired by Glenn Rempe&apos;s Diceware
+          </a>
+          <span className="text-slate-300 dark:text-slate-600">|</span>
+          <a
+            href="https://theworld.com/~reinhold/diceware.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
+          >
+            Diceware&trade; by Arnold G. Reinhold
+          </a>
+        </div>
       </footer>
       </div>
     </main>
