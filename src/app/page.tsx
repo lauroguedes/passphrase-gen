@@ -39,7 +39,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="text-indigo-400 hover:text-indigo-500 underline underline-offset-2"
           >
-            artisan Lauro Guedes
+            Lauro Guedes
           </a>
         </p>
         <p>
