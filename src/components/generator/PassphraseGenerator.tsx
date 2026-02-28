@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import { usePassphrase } from "@/hooks/usePassphrase";
 import { useClipboard } from "@/hooks/useClipboard";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Toast } from "@/components/ui/Toast";
@@ -13,22 +12,40 @@ import { SeparatorSelector } from "./SeparatorSelector";
 import { GenerateButton } from "./GenerateButton";
 import { CopyButton } from "./CopyButton";
 import { Loader2, Settings } from "lucide-react";
+import type {
+  PassphraseConfig,
+  PassphraseResult,
+  SeparatorOption,
+  WordlistType,
+} from "@/types";
 
-export function PassphraseGenerator() {
-  const {
-    config,
-    result,
-    isGenerating,
-    isWordlistLoading,
-    error,
-    generate,
-    setWordCount,
-    setCapitalize,
-    setIncludeNumbers,
-    setSeparator,
-    setWordlistType,
-  } = usePassphrase();
+export interface PassphraseGeneratorProps {
+  config: PassphraseConfig;
+  result: PassphraseResult | null;
+  isGenerating: boolean;
+  isWordlistLoading: boolean;
+  error: string | null;
+  generate: () => Promise<void>;
+  setWordCount: (count: number) => void;
+  setCapitalize: (value: boolean) => void;
+  setIncludeNumbers: (value: boolean) => void;
+  setSeparator: (value: SeparatorOption) => void;
+  setWordlistType: (value: WordlistType) => void;
+}
 
+export function PassphraseGenerator({
+  config,
+  result,
+  isGenerating,
+  isWordlistLoading,
+  error,
+  generate,
+  setWordCount,
+  setCapitalize,
+  setIncludeNumbers,
+  setSeparator,
+  setWordlistType,
+}: PassphraseGeneratorProps) {
   const { copied, copiedText, copy } = useClipboard();
   const generationCounter = useRef(0);
 

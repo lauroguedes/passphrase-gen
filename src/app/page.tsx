@@ -1,4 +1,4 @@
-import { PassphraseGenerator } from "@/components/generator/PassphraseGenerator";
+import { PassphraseSection } from "@/components/generator/PassphraseSection";
 import { WhyRandomPassphrases } from "@/components/educational/WhyRandomPassphrases";
 import { BestPractices } from "@/components/educational/BestPractices";
 import { EffResearchSummary } from "@/components/educational/EffResearchSummary";
@@ -19,8 +19,8 @@ export default function Home() {
 
       <div className="px-4 max-w-4xl mx-auto">
 
-      {/* Generator */}
-      <PassphraseGenerator />
+      {/* Generator + Entropy Stats */}
+      <PassphraseSection />
 
       {/* Educational Sections */}
       <div className="mt-24 space-y-16 md:space-y-24">
