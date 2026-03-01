@@ -4,7 +4,7 @@ A cryptographically secure passphrase generator built with the **EFF Dice-Roll M
 
 ## Features
 
-- **Three EFF wordlists** : Long List (7,776 words), Short List #1 (short words), Short List #2 (memorable words)
+- **Multi-language wordlists** : English (3 EFF lists) and Brazilian Portuguese (2 lists), with a language selector to switch between them
 - **Cryptographic randomness** : Uses `crypto.getRandomValues()` with rejection sampling for unbiased dice rolls
 - **Configurable** : Adjust word count (3-10), separators, capitalization, numbers, symbols, and emojis
 - **Entropy statistics** : Real-time entropy bits, keyspace, crack time, and strength classification
@@ -13,7 +13,7 @@ A cryptographically secure passphrase generator built with the **EFF Dice-Roll M
 - **Responsive** : Mobile-first layout with passphrase output prioritized on small screens
 - **Zero server dependency** : All generation happens client-side; no API calls, no telemetry
 - **Educational content** : Entropy explanations, best practices, and EFF methodology overview
-- **Multi-language ready** : Extensible wordlist system that supports community contributions
+- **Extensible** : Community contributions of new language wordlists are welcome
 
 ## The EFF Dice-Roll Method
 
@@ -30,11 +30,13 @@ This generator digitally reproduces the physical dice-roll process. Instead of r
 
 **Wordlist options:**
 
-| List | Words | Dice | Use case |
-|------|-------|------|----------|
-| Long List | 7,776 | 5 per word | Maximum entropy (~12.9 bits/word) |
-| Short #1 | 1,296 | 4 per word | Shorter words, easier to type |
-| Short #2 | 1,296 | 4 per word | Longer memorable words, easier to remember |
+| Language | List | Words | Dice | Use case |
+|----------|------|-------|------|----------|
+| English | Long List | 7,776 | 5 per word | Maximum entropy (~12.9 bits/word) |
+| English | Short #1 | 1,296 | 4 per word | Shorter words, easier to type |
+| English | Short #2 | 1,296 | 4 per word | Longer memorable words, easier to remember |
+| Português (BR) | Lista Longa | 7,776 | 5 per word | Maximum entropy (~12.9 bits/word) |
+| Português (BR) | Lista Curta | 1,296 | 4 per word | Memorable Portuguese words |
 
 ## Tech Stack
 
@@ -100,7 +102,8 @@ src/
 │   │   ├── PassphraseSection.tsx  # State wrapper (usePassphrase + EntropyStats)
 │   │   ├── PassphraseGenerator.tsx  # Main orchestrator (two-panel layout)
 │   │   ├── PassphraseDisplay.tsx    # Animated word-by-word passphrase display
-│   │   ├── WordlistSelector.tsx     # L / S#1 / S#2 wordlist picker
+│   │   ├── LanguageSelector.tsx      # Language dropdown (flag + name)
+│   │   ├── WordlistSelector.tsx     # Wordlist picker (filtered by language)
 │   │   ├── WordCountStepper.tsx     # Word count -/+ stepper (3-10)
 │   │   ├── SeparatorSelector.tsx    # Separator character grid
 │   │   ├── OptionSwitches.tsx       # Capitalize, Numbers, Symbols, Emojis toggles
@@ -132,10 +135,13 @@ src/
 │   └── index.ts             # TypeScript type definitions
 public/
 └── wordlists/
-    └── en/                  # English EFF wordlists
-        ├── eff_large_wordlist.txt
-        ├── eff_short_wordlist_1.txt
-        └── eff_short_wordlist_2.txt
+    ├── en/                  # English EFF wordlists
+    │   ├── eff_large_wordlist.txt
+    │   ├── eff_short_wordlist_1.txt
+    │   └── eff_short_wordlist_2.txt
+    └── pt-br/               # Brazilian Portuguese wordlists
+        ├── diceware_pt_br_large.txt
+        └── diceware_pt_br_short.txt
 ```
 
 ## Contributing
@@ -193,22 +199,36 @@ Use [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) two-lette
 
 ### 3. Register in constants
 
-Add an entry to the `WORDLISTS` array in `src/lib/constants.ts`:
+In `src/lib/constants.ts`:
+
+1. Add your language to the `LANGUAGES` array:
+
+```typescript
+{ value: "es", label: "Español", flag: "🇪🇸" }
+```
+
+2. Add your wordlist(s) to the `WORDLISTS` array:
 
 ```typescript
 {
-  value: "pt-large",
-  label: "Portuguese",
-  icon: "PT",
-  tooltip: "7,776 Portuguese words, 5 dice per word.",
-  url: "/wordlists/pt/diceware_pt_large.txt",
+  value: "es-large",
+  label: "Lista Larga",
+  icon: "L",
+  tooltip: "7,776 Spanish words, 5 dice per word.",
+  url: "/wordlists/es/diceware_es_large.txt",
   diceCount: 5,
-  language: "pt",
+  language: "es",
   wordCount: 7776,
 }
 ```
 
-The `language` and `wordCount` fields are used for entropy calculations and future language-based filtering.
+3. Add a default mapping in `getDefaultWordlistForLanguage()`:
+
+```typescript
+"es": "es-large",
+```
+
+4. Add the language code to the `Language` type in `src/types/index.ts`.
 
 ### 4. Submit a Pull Request
 

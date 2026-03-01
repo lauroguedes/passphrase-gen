@@ -11,8 +11,10 @@ import { OptionSwitches } from "./OptionSwitches";
 import { SeparatorSelector } from "./SeparatorSelector";
 import { GenerateButton } from "./GenerateButton";
 import { CopyButton } from "./CopyButton";
+import { LanguageSelector } from "./LanguageSelector";
 import { Loader2, Settings } from "lucide-react";
 import type {
+  Language,
   PassphraseConfig,
   PassphraseResult,
   SeparatorOption,
@@ -33,6 +35,7 @@ export interface PassphraseGeneratorProps {
   setIncludeEmojis: (value: boolean) => void;
   setSeparator: (value: SeparatorOption) => void;
   setWordlistType: (value: WordlistType) => void;
+  setLanguage: (lang: Language) => void;
 }
 
 export function PassphraseGenerator({
@@ -49,6 +52,7 @@ export function PassphraseGenerator({
   setIncludeEmojis,
   setSeparator,
   setWordlistType,
+  setLanguage,
 }: PassphraseGeneratorProps) {
   const { copied, copiedText, copy } = useClipboard();
   const generationCounter = useRef(0);
@@ -84,6 +88,7 @@ export function PassphraseGenerator({
             <WordlistSelector
               selected={config.wordlistType}
               onChange={setWordlistType}
+              language={config.language}
             />
 
             <div className="h-px bg-slate-200/60 dark:bg-slate-700/60" />
@@ -116,7 +121,15 @@ export function PassphraseGenerator({
         </GlassCard>
 
         {/* Right Panel — Passphrase Output */}
-        <GlassCard className="p-6 md:p-10 flex-1 flex flex-col justify-center">
+        <GlassCard className="p-6 md:p-10 flex-1 flex flex-col">
+          <div className="flex justify-end -mt-1 mb-2">
+            <LanguageSelector
+              selected={config.language}
+              onChange={setLanguage}
+            />
+          </div>
+
+          <div className="flex-1 flex flex-col justify-center">
           {isWordlistLoading && !result ? (
             <div className="min-h-[120px] flex items-center justify-center">
               <Loader2 size={32} className="animate-spin text-indigo-400" />
@@ -146,6 +159,7 @@ export function PassphraseGenerator({
               isGenerating={isGenerating}
             />
             {result && <CopyButton copied={copied} onCopy={handleCopy} />}
+          </div>
           </div>
         </GlassCard>
       </div>

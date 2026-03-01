@@ -4,6 +4,8 @@ export interface GeneratedWord {
   diceIndex: string;
 }
 
+export type Language = "en" | "pt-br" | (string & {});
+
 export type WordlistType = "long" | "short1" | "short2" | (string & {});
 
 export interface WordlistChoice {
@@ -25,6 +27,7 @@ export interface PassphraseConfig {
   includeEmojis: boolean;
   separator: SeparatorOption;
   wordlistType: WordlistType;
+  language: Language;
 }
 
 export type SeparatorOption = "~" | "|" | "::" | "!" | "_" | "-" | "." | "/" | " " | "";

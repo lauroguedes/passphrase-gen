@@ -3,21 +3,24 @@
 import { motion } from "framer-motion";
 import { WORDLISTS } from "@/lib/constants";
 import { Tooltip } from "@/components/ui/Tooltip";
-import type { WordlistType } from "@/types";
+import type { Language, WordlistType } from "@/types";
 
 interface WordlistSelectorProps {
   selected: WordlistType;
   onChange: (value: WordlistType) => void;
+  language: Language;
 }
 
-export function WordlistSelector({ selected, onChange }: WordlistSelectorProps) {
+export function WordlistSelector({ selected, onChange, language }: WordlistSelectorProps) {
+  const filtered = WORDLISTS.filter((wl) => wl.language === language);
+
   return (
     <div className="flex flex-col items-center gap-3">
       <span className="text-xs font-body font-semibold text-slate-400 uppercase tracking-wider">
         Word List
       </span>
       <div className="flex flex-wrap justify-center gap-2">
-        {WORDLISTS.map((wl) => (
+        {filtered.map((wl) => (
           <Tooltip key={wl.value} content={wl.tooltip}>
             <motion.button
               whileHover={{ scale: 1.06 }}

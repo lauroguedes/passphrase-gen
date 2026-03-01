@@ -19,6 +19,7 @@ export function PassphraseSection() {
     setIncludeEmojis,
     setSeparator,
     setWordlistType,
+    setLanguage,
   } = usePassphrase();
 
   return (
@@ -37,6 +38,7 @@ export function PassphraseSection() {
         setIncludeEmojis={setIncludeEmojis}
         setSeparator={setSeparator}
         setWordlistType={setWordlistType}
+        setLanguage={setLanguage}
       />
 
       <div className="mt-8">
