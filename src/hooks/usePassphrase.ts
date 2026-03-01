@@ -2,8 +2,9 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { generatePassphrase } from "@/lib/generate";
-import { WORD_COUNT_DEFAULT, WORDLIST_DEFAULT } from "@/lib/constants";
+import { WORD_COUNT_DEFAULT, WORDLIST_DEFAULT, LANGUAGE_DEFAULT, getDefaultWordlistForLanguage } from "@/lib/constants";
 import type {
+  Language,
   PassphraseConfig,
   PassphraseResult,
   SeparatorOption,
@@ -19,6 +20,7 @@ export function usePassphrase() {
     includeEmojis: false,
     separator: "~",
     wordlistType: WORDLIST_DEFAULT,
+    language: LANGUAGE_DEFAULT,
   });
 
   const [result, setResult] = useState<PassphraseResult | null>(null);
@@ -59,6 +61,12 @@ export function usePassphrase() {
     setConfig((prev) => ({ ...prev, separator: value }));
   const setWordlistType = (value: WordlistType) =>
     setConfig((prev) => ({ ...prev, wordlistType: value }));
+  const setLanguage = (lang: Language) =>
+    setConfig((prev) => ({
+      ...prev,
+      language: lang,
+      wordlistType: getDefaultWordlistForLanguage(lang),
+    }));
 
   return {
     config,
@@ -74,5 +82,6 @@ export function usePassphrase() {
     setIncludeEmojis,
     setSeparator,
     setWordlistType,
+    setLanguage,
   };
 }
